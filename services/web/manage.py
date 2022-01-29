@@ -1,6 +1,6 @@
 from flask.cli import FlaskGroup
 
-from riolists import app, db
+from riolists import app, db, User
 
 
 cli = FlaskGroup(app)
@@ -16,6 +16,12 @@ def poke_flask_app():
 def create_db():
     db.drop_all()
     db.create_all()
+    db.session.commit()
+
+
+@cli.command("seed_db")
+def seed_db():
+    db.session.add(User(login="rioran", name="Rioran", password="rioran"))
     db.session.commit()
 
 

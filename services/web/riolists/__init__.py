@@ -18,6 +18,7 @@ class User(db.Model):
         self.login = login
         self.password = password
         self.name = name
+        print(f"User {self.name} added")
 
     def __repr__(self):
         return f"{self.id} => {self.login}"
