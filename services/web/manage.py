@@ -23,9 +23,9 @@ def create_db():
 def seed_db():
     db.session.add(User(login="rioran", name="Rioran", password="rioran"))
     db.session.add(User(login="test", password="rioran"))
-    db.session.add(Items(user_id=1, text="Tomatoes", amount=10))
-    db.session.add(Items(user_id=1, text="Potatoes", amount=20))
-    db.session.add(Items(user_id=1, text="Cucumbers", amount=7))
+    db.session.add(Items(text="Tomatoes", amount=10))
+    db.session.add(Items(text="Potatoes", amount=20))
+    db.session.add(Items(text="Cucumbers", amount=7))
     db.session.commit()
 
 

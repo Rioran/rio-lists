@@ -35,7 +35,8 @@ class Items(db.Model):
     text = db.Column(db.String(100), nullable=True)
     amount = db.Column(db.Float, nullable=True)
 
-    def __init__(self, text="-no-text-", amount=0):
+    def __init__(self, user_id=1, text="-no-text-", amount=0):
+        self.user_id = user_id
         self.text = text
         self.amount = amount
         self.date_created = datetime.now()
