@@ -1,6 +1,6 @@
 from flask.cli import FlaskGroup
 
-from riolists import app, db, User
+from riolists import app, db, User, Items
 
 
 cli = FlaskGroup(app)
@@ -22,6 +22,10 @@ def create_db():
 @cli.command("seed_db")
 def seed_db():
     db.session.add(User(login="rioran", name="Rioran", password="rioran"))
+    db.session.add(User(login="test", password="rioran"))
+    db.session.add(Items(user_id=1, text="Tomatoes", amount=10))
+    db.session.add(Items(user_id=1, text="Potatoes", amount=20))
+    db.session.add(Items(user_id=1, text="Cucumbers", amount=7))
     db.session.commit()
 
 
