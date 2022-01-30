@@ -1,6 +1,6 @@
 from flask import Flask, redirect, request, render_template
 from flask_sqlalchemy import SQLAlchemy
-from .db import Items, User
+from .model import Items, User
 
 
 app = Flask(__name__)
