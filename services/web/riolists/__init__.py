@@ -1,10 +1,11 @@
 from flask import Flask, redirect, request, render_template
-
-from .db import db, Items, User
+from flask_sqlalchemy import SQLAlchemy
+from .db import Items, User
 
 
 app = Flask(__name__)
 app.config.from_object("riolists.config.Config")
+db = SQLAlchemy(app)
 
 
 @app.route("/", methods=["GET", "POST", "PUT"])
