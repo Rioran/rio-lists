@@ -38,9 +38,28 @@
         <button type="submit">Add item</button>
       </form>
       <br>
-      {% for item in items %}
-        <p>{{ item.date_created.strftime("%Y-%m-%d %H:%M:%S") }} => {{ item.text }} => {{ item.amount }}</p>
-      {% endfor %}
+      <table>
+        <th>
+          <td>datetime</td>
+          <td>text</td>
+          <td>amount</td>
+          <td>done?</td>
+        </th>
+        {% for item in items %}
+          <tr>
+            <td>{{ item.date_created.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+            <td>{{ item.text }}</td>
+            <td>{{ item.amount }}</td>
+            <td>
+              <form action="" method="PUT">
+                <input type="hidden" name="item_id" value={{ item.user_id }}>
+                <input type="hidden" name="user_id" value={{ user.id }}>
+                <button type="submit" value="=>" />
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
     </div>
   </body>
 </html>
