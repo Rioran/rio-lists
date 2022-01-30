@@ -39,7 +39,7 @@
       </form>
       <br>
       {% for item in items %}
-        <p>{{ item.date_created.strftime("%Y-%m-%d %h:%M:%s") }} => {{ item.text }} => {{ item.amount }}</p>
+        <p>{{ item.date_created.strftime("%Y-%m-%d %H:%M:%S") }} => {{ item.text }} => {{ item.amount }}</p>
       {% endfor %}
     </div>
   </body>
