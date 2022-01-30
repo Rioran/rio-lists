@@ -1,6 +1,6 @@
 from flask import Flask, redirect, request, render_template
 
-from db import db, Items, User
+from .db import db, Items, User
 
 
 app = Flask(__name__)
