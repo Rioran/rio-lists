@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, redirect, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -47,8 +47,16 @@ class Items(db.Model):
         return f"{self.id} => {self.user_id} => {self.text}"
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def main_page():
-    user = User.query.get(1)
-    items = Items.query.with_parent(user).all()
-    return render_template("main.html", items=items)
+    if request.method == "GET":
+        user = User.query.get(1)
+        items = Items.query.with_parent(user).all()
+        return render_template("main.html", items=items)
+    if request.method == "POST":
+        text = request.form["text"]
+        amount = request.form["amount"]
+        item = Items(text=text, amount=amount)
+        db.session.add(item)
+        db.session.commit()
+        return redirect(request.url)
