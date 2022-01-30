@@ -25,9 +25,7 @@
   <body>
     <div>
       <h1>This is a template page.</h1>
-      {% for item in items %}
-        <p>{{ item.text }} => {{ item.amount }}</p>
-      {% endfor %}
+      <br>
       <form action="" method="POST">
         <div>
           <label>Item to add:</label>
@@ -39,6 +37,10 @@
         </div>
         <button type="submit">Add item</button>
       </form>
+      <br>
+      {% for item in items %}
+        <p>{{ item.date_created.strftime("%Y-%m-%d %h:%M:%s") }} => {{ item.text }} => {{ item.amount }}</p>
+      {% endfor %}
     </div>
   </body>
 </html>
