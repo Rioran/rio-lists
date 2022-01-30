@@ -51,7 +51,7 @@ class Items(db.Model):
 def main_page():
     if request.method == "GET":
         user = User.query.get(1)
-        items = Items.query.with_parent(user).all()
+        items = Items.query.with_parent(user).all().order_by(Items.date_created.desc())
         return render_template("main.html", items=items)
     if request.method == "POST":
         text = request.form["text"]
