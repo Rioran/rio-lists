@@ -16,14 +16,16 @@ def main_page():
         ).all()
         return render_template("main.html", items=items)
     if request.method == "POST":
-        text = request.form["text"]
-        amount = request.form["amount"]
-        item = Items(text=text, amount=amount)
-        db.session.add(item)
-    if request.method == "PUT":
-        item_id = request.form["item_id"]
-        user_id = request.form["user_id"]
-        item = Items.query.filter_by(id=item_id, user_id=user_id).first()
-        item.is_active = False
-    db.session.commit()
-    return redirect(request.url)
+        action = request.form["action"]
+        if action == "item_add":
+            text = request.form["text"]
+            amount = request.form["amount"]
+            item = Items(text=text, amount=amount)
+            db.session.add(item)
+        if action == "item_deactivate":
+            item_id = request.form["item_id"]
+            user_id = request.form["user_id"]
+            item = Items.query.filter_by(id=item_id, user_id=user_id).first()
+            item.is_active = False
+        db.session.commit()
+        return redirect(request.url)

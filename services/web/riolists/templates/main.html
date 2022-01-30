@@ -27,6 +27,7 @@
       <h1>This is a template page.</h1>
       <br>
       <form action="" method="POST">
+        <input type="hidden" name="action" value="item_add">
         <div>
           <label>Item to add:</label>
           <input type="text" name="text" placeholder="Your text goes here...">
@@ -51,7 +52,8 @@
             <td>{{ item.text }}</td>
             <td>{{ item.amount }}</td>
             <td>
-              <form action="" method="PUT">
+              <form action="" method="POST">
+                <input type="hidden" name="action" value="item_deactivate">
                 <input type="hidden" name="item_id" value={{ item.id }}>
                 <input type="hidden" name="user_id" value={{ item.user_id }}>
                 <button type="submit">=></button>
