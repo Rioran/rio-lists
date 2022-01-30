@@ -40,12 +40,12 @@
       </form>
       <br>
       <table>
-        <th>
-          <td>datetime</td>
-          <td>text</td>
-          <td>amount</td>
-          <td>done?</td>
-        </th>
+        <tr>
+          <th>datetime</th>
+          <th>text</th>
+          <th>amount</th>
+          <th>done?</th>
+        </tr>
         {% for item in items %}
           <tr>
             <td>{{ item.date_created.strftime("%Y-%m-%d %H:%M:%S") }}</td>
