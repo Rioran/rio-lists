@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -49,4 +49,4 @@ class Items(db.Model):
 
 @app.route("/")
 def main_page():
-    return jsonify(message="sup, dude!")
+    return render_template("main.html")
