@@ -49,4 +49,6 @@ class Items(db.Model):
 
 @app.route("/")
 def main_page():
-    return render_template("main.html")
+    user = User.query.get(1)
+    items = Items.query.with_parent(user).all()
+    return render_template("main.html", items=items)

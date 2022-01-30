@@ -24,7 +24,10 @@
   </head>
   <body>
     <div>
-      This is a template page.
+      <h1>This is a template page.</h1>
+      {% for item in items %}
+        {{ item.text }} => {{ item.amount }}
+      {% endfor %}
     </div>
   </body>
 </html>
