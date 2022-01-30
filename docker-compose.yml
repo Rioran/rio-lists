@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   web:
+    container_name: flask
     restart: always
     build: ./services/web
     command: python manage.py run -h 0.0.0.0
@@ -14,6 +15,7 @@ services:
     depends_on:
       - db
   db:
+    container_name: postgres
     image: postgres:14-alpine
     expose:
       - "5432"
