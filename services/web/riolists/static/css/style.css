@@ -12,11 +12,11 @@ body {
 
 h1 {
   font-family: Verdana, sans-serif;
-  color: #377ba8;
+  color: #E9FFF8;
   margin: 1rem 0;
 }
 
-a { color: #377ba8; }
+a { color: #E9FFF8; }
 
 hr { border: none; border-top: 1px solid lightgray; }
 
@@ -24,7 +24,7 @@ nav {
   background: #162A24;
   display: flex;
   align-items: center;
-  padding: 0 0.5rem;
+  padding: 0 2rem;
 }
 
 nav h1 {

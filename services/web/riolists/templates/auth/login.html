@@ -6,16 +6,16 @@
 
 {% block content %}
   <form method="post">
-    <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input name="username" id="username" required>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" required>
-    </div>
     <center>
+      <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input name="username" id="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+      </div>
       <input type="submit" value="Log In">
     </center>
   </form>
