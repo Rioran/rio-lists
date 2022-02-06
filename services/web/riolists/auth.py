@@ -41,6 +41,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        next_url = request.form["next"]
         error = None
 
         user = User.query.filter_by(login=username).first()
@@ -52,7 +53,9 @@ def login():
 
         if error is None:
             session.clear()
-            session['user_id'] = user['id']
+            session['user_id'] = user.id
+            if next_url:
+                return redirect(next_url)
             return redirect(url_for('main'))
 
         flash(error)
@@ -80,7 +83,7 @@ def login_required(view_function):
     @functools.wraps(view_function)
     def wrapped_view(*args, **kwargs):
         if g.user is None:
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('auth.login', next=request.url))
 
         return view_function(*args, **kwargs)
 

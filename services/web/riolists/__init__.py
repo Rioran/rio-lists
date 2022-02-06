@@ -12,8 +12,8 @@ db.init_app(app)
 app.register_blueprint(bp)
 
 
-@login_required
 @app.route("/", methods=["GET", "POST"])
+@login_required
 def main_page():
     if request.method == "GET":
         user = User.query.get(1)
