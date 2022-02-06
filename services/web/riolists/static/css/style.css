@@ -21,7 +21,7 @@ a { color: #377ba8; }
 hr { border: none; border-top: 1px solid lightgray; }
 
 nav {
-  background: #52A388;
+  background: #162A24;
   display: flex;
   align-items: center;
   padding: 0 0.5rem;
@@ -46,15 +46,42 @@ nav ul  {
 
 nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 
+#form {
+    background-color: #FFF;
+    height: 600px;
+    width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 0px;
+    text-align:center;
+}
+label {
+    font-family: Verdana, sans-serif;
+    font-size: 18px;
+    color: #333;
+    height: 20px;
+    width: 200px;
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: right;
+    margin-right:15px;
+    float:left;
+}
+
+input {
+    height: 20px;
+    width: 300px;
+    border: 1px solid #000;
+    margin-top: 10px;
+}
+
 .content { padding: 0 1rem 1rem; }
 .content > header { border-bottom: 1px solid lightgray; display: flex; align-items: flex-end; }
 .content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
 .flash { margin: 1em 0; padding: 1em; background: #cae6f6; border: 1px solid #377ba8; }
-.post > header { display: flex; align-items: flex-end; font-size: 0.85em; }
-.post > header > div:first-of-type { flex: auto; }
-.post > header h1 { font-size: 1.5em; margin-bottom: 0; }
-.post .about { color: slategray; font-style: italic; }
-.post .body { white-space: pre-line; }
 .content:last-child { margin-bottom: 0; }
 .content form { margin: 1em 0; display: flex; flex-direction: column; }
 .content label { font-weight: bold; margin-bottom: 0.5em; }
