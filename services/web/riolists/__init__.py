@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, render_template
+from flask import Flask, g, redirect, request, render_template
 from os import urandom
 
 from .auth import bp, login_required
@@ -16,7 +16,7 @@ app.register_blueprint(bp)
 @login_required
 def main_page():
     if request.method == "GET":
-        user = User.query.get(1)
+        user = User.query.get(g.user.id)
         items = Items.query.with_parent(user).filter(Items.is_active).order_by(
             Items.date_created.desc()
         ).all()
@@ -26,12 +26,13 @@ def main_page():
         if action == "item_add":
             text = request.form["text"]
             amount = request.form["amount"]
-            item = Items(text=text, amount=amount)
+            item = Items(text=text, amount=amount, user_id=g.user.id)
             db.session.add(item)
         if action == "item_deactivate":
             item_id = request.form["item_id"]
-            user_id = request.form["user_id"]
+            user_id = g.user.id
             item = Items.query.filter_by(id=item_id, user_id=user_id).first()
-            item.is_active = False
+            if item is not None:
+                item.is_active = False
         db.session.commit()
         return redirect(request.url)

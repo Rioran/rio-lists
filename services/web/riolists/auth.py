@@ -56,7 +56,7 @@ def login():
             session['user_id'] = user.id
             if next_url:
                 return redirect(next_url)
-            return redirect(url_for('main'))
+            return redirect(url_for('main_page'))
 
         flash(error)
 
