@@ -1,12 +1,16 @@
 from flask import Flask, redirect, request, render_template
+
+from .auth import bp, login_required
 from .model import db, Items, User
 
 
 app = Flask(__name__)
 app.config.from_object("riolists.config.Config")
 db.init_app(app)
+app.register_blueprint(bp)
 
 
+@login_required
 @app.route("/", methods=["GET", "POST", "PUT"])
 def main_page():
     if request.method == "GET":

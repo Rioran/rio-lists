@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Rioran - {% block title %}{% endblock %}</title>
+    <meta name="description" content="A simple Lists service for a private use.">
+    <meta name="author" content="Roman 'Rioran' Voronov">
+
+    <meta property="og:title" content="Lists service">
+    <meta property="og:type" content="website">
+    <!-- <meta property="og:url" content="https://rioran.github.io/rioran-clock/main"> -->
+    <meta property="og:description" content="A simple Lists service clock for a private use.">
+    <meta property="og:image" content="images/og_image.png">
+    <!--
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="css/styles.css?v=3.0">
+    -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=1.0">
+
+  </head>
+  <body>
+    <nav>
+      <h1>Rioran World</h1>
+      <ul>
+        {% if g.user %}
+          <li><span>{{ g.user['username'] }}</span>
+          <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+        {% else %}
+          <li><a href="{{ url_for('auth.register') }}">Register</a>
+          <li><a href="{{ url_for('auth.login') }}">Log In</a>
+        {% endif %}
+      </ul>
+    </nav>
+    <section class="content">
+      <header>
+        {% block header %}{% endblock %}
+      </header>
+      {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+      {% endfor %}
+      {% block content %}{% endblock %}
+    </section>
+    <div>
+      <h1>This is a template page.</h1>
+      <br>
+      <form action="" method="POST">
+        <input type="hidden" name="action" value="item_add">
+        <div>
+          <label>Item to add:</label>
+          <input type="text" name="text" placeholder="Your text goes here...">
+        </div>
+        <div>
+          <label>How much?</label>
+          <input type="number" name="amount" step="0.01" value=0>
+        </div>
+        <button type="submit">Add item</button>
+      </form>
+      <br>
+      <table>
+        <tr>
+          <th>datetime</th>
+          <th>text</th>
+          <th>amount</th>
+          <th>done?</th>
+        </tr>
+        {% for item in items %}
+          <tr>
+            <td>{{ item.date_created.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+            <td>{{ item.text }}</td>
+            <td>{{ item.amount }}</td>
+            <td>
+              <form action="" method="POST">
+                <input type="hidden" name="action" value="item_deactivate">
+                <input type="hidden" name="item_id" value={{ item.id }}>
+                <input type="hidden" name="user_id" value={{ item.user_id }}>
+                <button type="submit">=></button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
