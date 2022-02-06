@@ -28,7 +28,7 @@
       <h1>{% block header %}{% endblock %}</h1>
       <ul>
         {% if g.user %}
-          <li>Logged as: <span>{{ g.user.name }}</span>
+          <li><span>{{ g.user.name }}</span>
           <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
         {% else %}
           <li><a href="{{ url_for('auth.register') }}">Register</a>

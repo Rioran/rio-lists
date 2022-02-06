@@ -84,6 +84,15 @@ input {
     margin-top: 10px;
 }
 
+#block_container
+{
+    text-align:center;
+}
+#block
+{
+    display:inline;
+}
+
 .content { padding: 0 1rem 1rem; }
 .content > header { border-bottom: 1px solid lightgray; display: flex; align-items: flex-end; }
 .content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
