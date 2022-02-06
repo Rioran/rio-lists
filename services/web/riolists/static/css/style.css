@@ -46,6 +46,10 @@ nav ul  {
   padding: 0;
 }
 
+nav li {
+    color: #E9FFF8;
+}
+
 nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 
 #form {
@@ -92,3 +96,11 @@ input {
 input.danger { color: #cc2f2e; }
 input[type=submit] { align-self: start; min-width: 10em; }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: center;
+}
