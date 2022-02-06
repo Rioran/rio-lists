@@ -45,45 +45,5 @@
       {% endfor %}
       {% block content %}{% endblock %}
     </section>
-    <div>
-      <h1>This is a template page.</h1>
-      <br>
-      <form action="" method="POST">
-        <input type="hidden" name="action" value="item_add">
-        <div>
-          <label>Item to add:</label>
-          <input type="text" name="text" placeholder="Your text goes here...">
-        </div>
-        <div>
-          <label>How much?</label>
-          <input type="number" name="amount" step="0.01" value=0>
-        </div>
-        <button type="submit">Add item</button>
-      </form>
-      <br>
-      <table>
-        <tr>
-          <th>datetime</th>
-          <th>text</th>
-          <th>amount</th>
-          <th>done?</th>
-        </tr>
-        {% for item in items %}
-          <tr>
-            <td>{{ item.date_created.strftime("%Y-%m-%d %H:%M:%S") }}</td>
-            <td>{{ item.text }}</td>
-            <td>{{ item.amount }}</td>
-            <td>
-              <form action="" method="POST">
-                <input type="hidden" name="action" value="item_deactivate">
-                <input type="hidden" name="item_id" value={{ item.id }}>
-                <input type="hidden" name="user_id" value={{ item.user_id }}>
-                <button type="submit">=></button>
-              </form>
-            </td>
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
   </body>
 </html>
