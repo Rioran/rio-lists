@@ -41,3 +41,8 @@ def main_page():
                 item.is_active = False
         db.session.commit()
         return redirect(request.url)
+
+
+@app.route("/about")
+def about_page():
+    return render_template("about.html")

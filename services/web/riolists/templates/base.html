@@ -28,12 +28,13 @@
       <h1>{% block header %}{% endblock %}</h1>
       <ul>
         {% if g.user %}
-          <li><span>{{ g.user.name }}</span>
-          <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+          <li><span>{{ g.user.name }}</span></li>
+          <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
         {% else %}
-          <li><a href="{{ url_for('auth.register') }}">Register</a>
-          <li><a href="{{ url_for('auth.login') }}">Log In</a>
+          <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+          <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
         {% endif %}
+        <li><a href="{{ url_for('about_page') }}">about</a></li>
       </ul>
     </nav>
     <section class="content">
