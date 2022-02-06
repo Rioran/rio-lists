@@ -51,7 +51,7 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 #form {
     background-color: #FFF;
     height: 600px;
-    width: 400px;
+    max-width: 600px;
     margin-right: auto;
     margin-left: auto;
     margin-top: 0px;
