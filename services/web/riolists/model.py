@@ -14,9 +14,11 @@ class User(db.Model):
     name = db.Column(db.String(128), unique=False, nullable=False)
     items = db.relationship("Items")
 
-    def __init__(self, login, password, name="TestUser"):
+    def __init__(self, login, password, name=None):
         self.login = login
         self.password = password
+        if name is None:
+            name = login
         self.name = name
         print(f"User {self.name} added")
 

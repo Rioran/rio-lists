@@ -1,4 +1,5 @@
 from flask.cli import FlaskGroup
+from werkzeug.security import generate_password_hash
 
 from riolists import app, db, User, Items
 
@@ -21,8 +22,8 @@ def create_db():
 
 @cli.command("seed_db")
 def seed_db():
-    db.session.add(User(login="rioran", name="Rioran", password="rioran"))
-    db.session.add(User(login="test", password="rioran"))
+    db.session.add(User(login="rioran", name="Rioran", password=generate_password_hash("rioran")))
+    db.session.add(User(login="test", password=generate_password_hash("rioran")))
     db.session.add(Items(text="Tomatoes", amount=10))
     db.session.add(Items(text="Potatoes", amount=20))
     db.session.add(Items(text="Cucumbers", amount=7))

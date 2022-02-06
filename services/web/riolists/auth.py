@@ -22,7 +22,7 @@ def register():
 
         if error is None:
             try:
-                user = User(login=username, name=username, password=generate_password_hash(password))
+                user = User(login=username, password=generate_password_hash(password))
                 db.session.add(user)
                 db.session.commit()
             except Exception as e:
