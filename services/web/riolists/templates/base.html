@@ -13,19 +13,19 @@
     <meta property="og:url" content="http://www.rioran.fun/">
     <meta property="og:description" content="A simple Lists service clock for a private use.">
     <meta property="og:image" content="images/og_image.png">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     <!--
-    <link rel="icon" href="images/favicon.ico">
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
     <link rel="stylesheet" href="css/styles.css?v=3.0">
     -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.0">
 
   </head>
   <body>
     <nav>
-      <h1>Rioran World</h1>
+      <h1>{% block header %}{% endblock %}</h1>
       <ul>
         {% if g.user %}
           <li><span>{{ g.user.name }}</span>
@@ -37,9 +37,6 @@
       </ul>
     </nav>
     <section class="content">
-      <header>
-        {% block header %}{% endblock %}
-      </header>
       {% for message in get_flashed_messages() %}
         <div class="flash">{{ message }}</div>
       {% endfor %}

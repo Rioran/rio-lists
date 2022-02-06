@@ -1,4 +1,4 @@
-from flask import Flask, g, redirect, request, render_template
+from flask import Flask, g, redirect, request, render_template, send_from_directory
 from os import urandom
 
 from .auth import bp, login_required
@@ -10,6 +10,11 @@ app.secret_key = urandom(24)
 app.config.from_object("riolists.config.Config")
 db.init_app(app)
 app.register_blueprint(bp)
+
+
+@app.route("/static/<path:filename>")
+def staticfiles(filename):
+    return send_from_directory(app.config["STATIC_FOLDER"], filename)
 
 
 @app.route("/", methods=["GET", "POST"])
