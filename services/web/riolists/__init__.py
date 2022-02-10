@@ -1,12 +1,20 @@
 from flask import Flask, g, redirect, request, render_template, send_from_directory
-from os import urandom
+from os import path, urandom
 
 from .auth import bp, login_required
 from .model import db, Items, User
 
 
 app = Flask(__name__)
-app.secret_key = urandom(24)
+
+if not path.exists("secret_key.txt"):
+    flask_secret_key = urandom(24)
+    with open("secret_key.txt", "a") as file:
+        file.write(flask_secret_key)
+
+with open("secret_key.txt", "r") as file:
+    app.secret_key = file.read()
+
 app.config.from_object("riolists.config.Config")
 db.init_app(app)
 app.register_blueprint(bp)
