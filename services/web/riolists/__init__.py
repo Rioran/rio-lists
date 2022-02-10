@@ -1,5 +1,6 @@
 from flask import Flask, g, redirect, request, render_template, send_from_directory
-from os import path, urandom
+from os import path
+from secrets import token_hex
 
 from .auth import bp, login_required
 from .model import db, Items, User
@@ -8,7 +9,7 @@ from .model import db, Items, User
 app = Flask(__name__)
 
 if not path.exists("secret_key.txt"):
-    flask_secret_key = str(urandom(64))
+    flask_secret_key = token_hex()
     with open("secret_key.txt", "a") as file:
         file.write(flask_secret_key)
 
