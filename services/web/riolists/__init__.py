@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 if not path.exists("secret_key.txt"):
     flask_secret_key = token_hex()
-    with open("secret_key.txt", "xa") as file:
+    with open("secret_key.txt", "x") as file:
         file.write(flask_secret_key)
 
 with open("secret_key.txt", "r") as file:
