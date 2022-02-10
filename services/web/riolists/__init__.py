@@ -8,7 +8,7 @@ from .model import db, Items, User
 app = Flask(__name__)
 
 if not path.exists("secret_key.txt"):
-    flask_secret_key = urandom(24)
+    flask_secret_key = str(urandom(64))
     with open("secret_key.txt", "a") as file:
         file.write(flask_secret_key)
 
