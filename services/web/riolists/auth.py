@@ -13,6 +13,7 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        hours_offset = int(request.form['hours_offset'])
         error = None
 
         if not username:
@@ -22,7 +23,11 @@ def register():
 
         if error is None:
             try:
-                user = User(login=username, password=generate_password_hash(password))
+                user = User(
+                    login=username,
+                    password=generate_password_hash(password),
+                    hours_time_offset=hours_offset
+                )
                 db.session.add(user)
                 db.session.commit()
             except Exception as e:
