@@ -9,12 +9,16 @@ class User(db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
+    date_created = db.Column(db.DateTime, nullable=False)
+    date_updated = db.Column(db.DateTime, nullable=False)
     login = db.Column(db.String(128), unique=True, nullable=False)
     password = db.Column(db.String(128), unique=False, nullable=False)
     name = db.Column(db.String(128), unique=False, nullable=False)
     items = db.relationship("Items")
 
     def __init__(self, login, password, name=None):
+        self.date_created = datetime.now()
+        self.date_updated = self.date_created
         self.login = login
         self.password = password
         if name is None:
@@ -32,6 +36,7 @@ class Items(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     date_created = db.Column(db.DateTime, nullable=False)
+    date_updated = db.Column(db.DateTime, nullable=False)
     is_active = db.Column(db.Boolean, nullable=False)
     text = db.Column(db.String(100), nullable=True)
     amount = db.Column(db.Float, nullable=True)
@@ -41,6 +46,7 @@ class Items(db.Model):
         self.text = text
         self.amount = amount
         self.date_created = datetime.now()
+        self.date_updated = self.date_created
         self.is_active = True
         print(f"Item {self.text} added with {self.amount} amount")
 

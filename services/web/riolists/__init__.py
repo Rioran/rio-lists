@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask, g, redirect, request, render_template, send_from_directory
 from os import path
 from secrets import token_hex
@@ -48,6 +49,7 @@ def main_page():
             item = Items.query.filter_by(id=item_id, user_id=user_id).first()
             if item is not None:
                 item.is_active = False
+                item.date_updated = datetime.now()  # TODO: switch to auto update in db with sqlalchemy.func
         db.session.commit()
         return redirect(request.url)
 
