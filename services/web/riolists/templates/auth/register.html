@@ -5,7 +5,14 @@
 {% endblock %}
 
 {% block content %}
-  <form method="post">
+  <script type="text/javascript">
+    function get_hours_offset() {
+      const hours_offset = new Date().getTimezoneOffset()/60;
+      document.getElementById("hours_offset").value = hours_offset;
+    }
+  </script>
+  <form method="post" onload="get_hours_offset();">
+    <input type="hidden" name="hours_offset" id="hours_offset" value=0>
     <center>
       <div class="form-group">
         <label for="username">Username</label>

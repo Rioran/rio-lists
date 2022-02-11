@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 db = SQLAlchemy()
@@ -11,14 +11,16 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, nullable=False)
     date_updated = db.Column(db.DateTime, nullable=False)
+    hours_time_offset = db.Column(db.Integer, nullable=False)
     login = db.Column(db.String(128), unique=True, nullable=False)
     password = db.Column(db.String(128), unique=False, nullable=False)
     name = db.Column(db.String(128), unique=False, nullable=False)
     items = db.relationship("Items")
 
-    def __init__(self, login, password, name=None):
+    def __init__(self, login, password, hours_time_offset=0, name=None):
         self.date_created = datetime.now()
         self.date_updated = self.date_created
+        self.hours_time_offset = hours_time_offset
         self.login = login
         self.password = password
         if name is None:
@@ -28,6 +30,9 @@ class User(db.Model):
 
     def __repr__(self):
         return f"{self.id} => {self.login}"
+
+    def get_date_created_with_offset(self):
+        return self.date_created - timedelta(hours=self.hours_time_offset)
 
 
 class Items(db.Model):
@@ -52,3 +57,6 @@ class Items(db.Model):
 
     def __repr__(self):
         return f"{self.id} => {self.user_id} => {self.text}"
+
+    def get_date_created_with_offset(self):
+        return self.date_created - timedelta(hours=self.hours_time_offset)

@@ -31,7 +31,7 @@
         </tr>
         {% for item in items %}
           <tr>
-            <td>{{ item.date_created.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+            <td>{{ item.get_date_created_with_offset().strftime("%Y-%m-%d %H:%M:%S") }}</td>
             <td>{{ item.text }}</td>
             <td>{{ item.amount }}</td>
             <td>
