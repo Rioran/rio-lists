@@ -15,7 +15,7 @@ class User(db.Model):
     login = db.Column(db.String(128), unique=True, nullable=False)
     password = db.Column(db.String(128), unique=False, nullable=False)
     name = db.Column(db.String(128), unique=False, nullable=False)
-    items = db.relationship("Items")
+    items = db.relationship("Items", backref="user", lazy="joined")
 
     def __init__(self, login, password, hours_time_offset=0, name=None):
         self.date_created = datetime.now()
@@ -59,4 +59,4 @@ class Items(db.Model):
         return f"{self.id} => {self.user_id} => {self.text}"
 
     def get_date_created_with_offset(self):
-        return self.date_created - timedelta(hours=self.hours_time_offset)
+        return self.date_created - timedelta(hours=self.user.hours_time_offset)
